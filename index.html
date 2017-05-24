@@ -1,0 +1,136 @@
+<head>
+<title>Wifiphisher - Automated victim-customized phishing attacks against Wi-Fi clients</title>
+<style>
+    body { 
+        background-color: #000405;
+    }
+
+    #content {
+        font-family: monospace, prestige;
+        width: 600px;
+        padding: 5px 40px 20px 20px;
+        font-size: 12px;
+        background-color: white;
+        text-align: left;
+        border: 2px solid grey;
+    }
+
+    a {
+        color: #006d91;
+    }
+
+    #menu {
+        font-family: Arial, Helvetica, Sans-Serif;
+        padding-top: 2em;
+        padding-bottom: 0.1em;
+        font-size: 22px;
+        color: #006d91;
+    }
+
+    #menu a {
+        text-decoration: none;
+    }
+
+    h1 { 
+        padding-top: 5px;
+        font-size: 18px;
+    }
+
+    h2 { 
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+    ul, ol {
+        list-style-position: inside;
+        padding-left: 15px;
+    }
+</style>
+</head>
+<body>
+<center><img width="45%" src="logo.png"></img>
+<div id="menu">
+<a href="/">Intro</a> || <a href="/download.html">Download</a> || <a href="docs.html">Docs</a> || <a href="changelog.html">Changelog</a> || <a href="research.html">Research</a> 
+</div>
+<div id="content">
+<h1>Introduction</h1>
+<p>Wifiphisher is an effective rogue Access Point tool downloaded by hundreds of
+Wi-Fi hackers everyday. It is free and open source software currently available
+for Linux.</p> 
+
+<p>This site aims to provide with resources regarding the tool usage and the
+ongoing research. The most important changes (features, bugfixes etc) in each
+Wifiphisher version are described on the <a href="changelog.html">Changelog</a>.
+Using Wifiphisher is covered on the <a href="docs.html">Documentation
+Guide</a>.</p>
+
+<p>Happy phishing! :)</p>
+
+
+<h1>News</h1>
+
+
+<h2>Wifiphisher v1.3 (with Lure10 support) is out!</h2>
+
+
+<p><b>Date:</b> 2017-04-15</p>
+
+<p>Wifiphisher v1.3 is out with many new features. Check them out on the <a href="changelog.html">Changelog</a> page or go straight to the <a href="download.html">Download</a> page to try the new release.</p>
+
+<p>This new release includes the Lure10 attack, a novel way for associating automatically with any device that is within range running the latest Windows. A couple of days ago I gave a presentation at Hack In The Box security conference in Amsterdam disclosing the technical details of this attack. You can find the presentation material on the <a href="research.html">Research</a> page.</p>
+
+<p>We now have a dedicated repo for phishing scenarios <a href="https://github.com/wifiphisher/extra-phishing-pages">here</a>. If you have ever created a phishing scenario using Wifiphisher's template engine, you are welcome to share it with the rest of the community by sumitting a Pull Request there.
+
+<p>Enjoy the new release everyone!</p> 
+
+<center><img src="lure10_300x161.png"></img></center>
+
+
+<hr>
+
+<h2>33C3 Lightning talk: Efficient Wi-Fi Phishing</h2>
+
+<p><b>Date:</b> 2017-01-01</p>
+
+<p>Happy new year everyone.</p>
+
+<p>Last week I was happy to give a lightning talk at 33C3. You can find all the material from the talk on the <a href="research.html">Research</a> page.</p>
+
+<hr>
+
+<h2>Wifiphisher v1.2 is out!</h2>
+
+<p><b>Date:</b> 2016-12-05</p>
+
+Wifiphisher v1.2 is finally out. The two biggest improvements include:
+
+<ol>
+<li>Three new phishing scenarios:
+<ul>
+<li><a href="/ps/wifi_connect/">WiFi Connect</a> - A novel way for obtaining a PSK of a password-protected Wi-Fi
+network even from the most advanced users by showing a web-based imitation of
+the OS network manager.</li>
+<li><a href="/ps/oauth-login/">OAuth Login</a> - A scenario for capturing credentials from social networks, like
+Facebook. </li>
+<li><a href="/ps/plugin_update/">Plugin Update</a> - A scenario for getting the victims to download malicious
+executables (e.g. malwares containing a reverse shell payload)</li>
+</ul>
+<li>A new template engine. Users may now easily create their own phishing scenario or customize the existing ones according to their needs. Our <a href="docs.html">documentation guide</a> covers this new feature in much detail.</li>
+</ol>
+
+<p>You may see the full list of changes on the <a href="changelog.html">Changelog</a> or go straight to the <a href="download.html">Download</a> page.</p>
+
+<p>I would like to thank all the community contributing to this release by writing code or reporting bugs. Special thanks to:</p> 
+<ul>
+<li>Kostis Karantias</li>
+<li>Stergios Kolios</li>
+<li>Dale Patterson</li>
+<li>Brian Smith</li>
+<li>Leonidas Vrachnis</li>
+<li>Dionysis Zindros</li>
+</ul>
+
+<p>Enjoy the release and if you find any bugs you are encouraged to report them on our <a href="https://github.com/wifiphisher/wifiphisher">Github page</a>.</p>
+</div>
+</center>
+</body>

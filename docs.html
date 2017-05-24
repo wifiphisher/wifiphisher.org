@@ -1,0 +1,213 @@
+<head>
+<title>Wifiphisher - Automated victim-customized phishing attacks against Wi-Fi clients</title>
+<style>
+    body { 
+        background-color: #000405;
+    }
+
+    #content, table {
+        font-family: monospace, prestige;
+        width: 600px;
+        padding: 5px 40px 20px 20px;
+        font-size: 12px;
+        background-color: white;
+        text-align: left;
+        border: 2px solid grey;
+    }
+
+    a {
+        color: #006d91;
+    }
+
+    #menu {
+        font-family: Arial, Helvetica, Sans-Serif;
+        padding-top: 2em;
+        padding-bottom: 0.1em;
+        font-size: 22px;
+        color: #006d91;
+    }
+
+    #menu a {
+        text-decoration: none;
+    }
+
+    h1 { 
+        padding-top: 5px;
+        font-size: 18px;
+    }
+
+    h2 { 
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+    ul, ol {
+        list-style-position: inside;
+        padding-left: 15px;
+    }
+
+    ul, ol {
+        list-style-position: inside;
+        padding-left: 15px;
+    }
+</style>
+</head>
+<body>
+<center><img width="45%" src="logo.png"></img>
+<div id="menu">
+<a href="/">Intro</a> || <a href="/download.html">Download</a> || <a href="docs.html">Docs</a> || <a href="changelog.html">Changelog</a> || <a href="research.html">Research</a> 
+</div>
+<div id="content">
+<h1>Documentation</h1>
+<h2>NAME</h2>
+<p>Wifiphisher - Automated phishing attacks against Wi-Fi networks</p>
+<h2>SYNOPSIS</h2>
+<p>wifiphisher [Options]</p>
+<h2>OPTIONS</h2>
+<p>This options summary is printed when Wifiphisher is run with no arguments. Advanced users may edit wifiphisher/constants.py for deeper configuration.</p>
+<table>
+<tr><td>-h, --help</td><td>show this help message and exit</td></tr>
+<tr><td>-s SKIP, --skip SKIP</td><td>Skip deauthing this MAC address. Example: -s
+00:11:BB:33:44:AA</td></tr>
+<tr><td>-jI JAMMINGINTERFACE, --jamminginterface JAMMINGINTERFACE</td><td>
+Manually choose an interface that supports monitor
+mode for deauthenticating the victims. Example: -jI
+wlan1</td></tr>
+<tr><td>
+-aI APINTERFACE, --apinterface APINTERFACE</td><td>
+Manually choose an interface that supports AP mode for
+spawning an AP. Example: -aI wlan0</td></tr>
+<tr><td>-t TIMEINTERVAL, --timeinterval TIMEINTERVAL</td><td>
+Choose the time interval between DEAUTH packets being
+sent</td></tr>
+<tr><td>-dP DEAUTHPACKETS, --deauthpackets DEAUTHPACKETS</td><td>
+Choose the number of packets to send in each deauth
+burst. Default value is 1; 1 packet to the client and
+1 packet to the AP. Send 2 deauth packets to the
+client and 2 deauth packets to the AP: -p 2</td></tr>
+<tr><td>-d, --directedonly</td><td>Skip the deauthentication packets to the broadcast
+address ofthe access points and only send them to
+client/AP pairs</td></tr>
+<tr><td>-nJ, --nojamming</td><td>Skip the deauthentication phase. When this option is
+used, only one wireless interface is required</td></tr>
+<td>-e ESSID, --essid ESSID</td><td>
+Enter the ESSID of the rogue Access Point. This option
+will skip Access Point selection phase. Example:
+--essid 'Free WiFi'</td></tr>
+<tr><td>-p PHISHINGSCENARIO, --phishingscenario PHISHINGSCENARIO</td><td>
+Choose the phishing scenario to run.This option will
+skip the scenario selection phase. Example: -p
+firmware_upgrade</td></tr>
+<tr><td>-pK PRESHAREDKEY, --presharedkey PRESHAREDKEY</td><td>
+Add WPA/WPA2 protection on the rogue Access Point.
+Example: -pK s3cr3tp4ssw0rd</td></tr>
+</table>
+<h2>DESCRIPTION</h2>
+<p>
+Wifiphisher is a security tool that mounts automated phishing attacks against Wi-Fi networks in order to obtain credentials or infect the victims with malwares. It is a social engineering attack that can be used to obtain WPA/WPA2 secret passphrases and unlike other methods it does not include any brute forcing. It is an easy way for obtaining credentials from social networks or other third party login pages.</p>
+<p>After achieving a man-in-the-middle position using the Evil Twin attack, Wifiphisher redirects all HTTP requests to an attacker-controlled phishing page.</p>
+<p>From the victim's perspective, the attack makes use in three phases:</p>
+<ol>
+<li>Victim is being deauthenticated from her access point. Wifiphisher continuously jams all of the target access point's wifi devices within range by forging “Deauthenticate” or “Disassociate” packets to disrupt existing associations.</li>
+<li>Victim joins a rogue access point. Wifiphisher sniffs the area and copies the target access point's settings. It then creates a rogue wireless access point that is modeled by the target. It also sets up a NAT/DHCP server and forwards the right ports. Consequently, because of the jamming, clients will eventually start connecting to the rogue access point. After this phase, the victim is MiTMed.</li>
+<li>Victim is being served a realistic specially-customized phishing page. Wifiphisher employs a minimal web server that responds to HTTP & HTTPS requests. As soon as the victim requests a page from the Internet, wifiphisher will respond with a realistic fake page that asks for credentials or serves malwares. This page will be specifically crafted for the victim. For example, a router config-looking page will contain logos of the victim's vendor. The tool supports community-built templates for different phishing scenarios.</li>
+</ol>
+
+<h2>EXAMPLES</h2>
+
+> wifiphisher -aI wlan0 -jI wlan4 -p firmware-upgrade
+
+<p>Use wlan0 for spawning the rogue Access Point and wlan4 for DoS attacks. Select the target network manually from the list and perform the "Firmware Upgrade" scenario.</p>
+<p>Useful for manually selecting the wireless adapters. The "Firware Upgrade" scenario is an easy way for obtaining the PSK from a password-protected network.</p>
+
+> wifiphisher --essid CONFERENCE_WIFI -p plugin_update -pK s3cr3tp4ssw0rd
+
+<p>Automatically pick the right interfaces. Target the Wi-Fi with ESSID "CONFERENCE_WIFI" and perform the "Plugin Update" scenario. The Evil Twin will be password-protected with PSK "s3cr3tp4ssw0rd".</p>
+
+<p>Useful against networks with disclosed PSKs (e.g. in conferences). The "Plugin Update" scenario provides an easy way for getting the victims to download malicious executables (e.g. malwares containing a reverse shell payload).</p>
+
+> wifiphisher --nojamming --essid "FREE WI-FI" -p oauth-login
+
+<p>Do not target any network. Simply spawn an open Wi-Fi network with ESSID "FREE WI-FI" and perform the "OAuth Login" scenario.</p>
+<p>Useful against victims in public areas. The <a href="http://wifiphisher.org/ps/oauth-login/">OAuth Login</a> scenario provides a simple way for capturing credentials from social networks, like Facebook.</p> 
+
+<h2>PHISHING SCENARIOS</h2>
+<p>Wifiphisher supports community-built templates for different phishing scenarios. Currently, the following phishing scenarios are in place:</p>
+<ul>
+<li>Firmware Upgrade Page: A router configuration page without logos or brands asking for WPA/WPA2 password due to a firmware upgrade. Mobile-friendly.</li>
+<li>OAuth Login Page: A free Wi-Fi Service asking for Facebook credentials to authenticate using OAuth.</li>
+<li>Browser Plugin Update: A generic browser plugin update page that can be used to serve payloads to the victims.</li>
+<li>Network Manager Connect: Imitates the behavior of the network manager. This template shows Chrome's "Connection Failed" page and displays a network manager window through the page asking for the pre-shared key. Currently, the network managers of Windows and MAC OS are supported.</li>
+</ul>
+
+<h3>Creating a custom phishing scenario</h3>
+<p>For specific target-oriented attacks, custom scenarios may be necessary.
+Creating a phishing scenario is easy and consists of two steps:</p>
+<ol><li> Create the config.ini
+<p>A config.ini file lies in template's root directory and its contents can be divided into two sections:</p>
+<ol><li>info: This section defines the scenario's characteristics.</li>
+<ul>
+<li>Name (mandatory): The name of the phishing scenario</li>
+<li>Description (mandatory): A quick description (<50 words) of the scenario</li>
+<li>PayloadPath (optional): If the phishing scenario pushes malwares to victims, users can insert the absolute path of the malicious executable here</li>
+</ul>
+<li>context: This section is optional and holds user-defined variables that may be later injected to the template.</li>
+<h4>Example</h4>
+Here's an example of a config.ini file:
+<pre>
+> # This is a comment
+> [info]
+> Name: ISP warning page
+> Description: A warning page from victim's ISP asking for DSL credentials
+>
+> [context]
+> victim_name: John Phisher
+> victim_ISP: Interwebz
+</pre>
+</ol>
+</li>
+<li> Create the template files</li>
+<p>A template contains the static parts of the desired HTML output and may consist of several static HTML files, images, CSS or Javascript files. Dynamic languages (e.g. PHP) are not supported.</p>
+<h4>Placeholders</h4>
+<p>
+The HTML files may also contain some special syntax (think placeholders) describing how dynamic content will be inserted. The dynamic contect may originate from two sources:</p>
+<ol>
+<li>Beacon frames.</li><p>Beacon frames contain all the information about the target network and can be used for information gathering. The main process gathers all the interesting information and passes them to the chosen template on the runtime.</p>
+<p>At the time of writing, the main process passes the following data:</p>
+<ul>
+<li>target_ap_essid &lt;str&gt;: The ESSID of the target Access Point</li>
+<li>target_ap_bssid &lt;str&gt;: The BSSID (MAC) address of the target Access Point</li>
+<li>target_ap_channel &lt;str&lt;: The channel of the target Access Point</li>
+<li>target_ap_vendor &lt;str&gt;: The vendor's name of the target Access Point</li>
+<li>target_ap_logo_path &lt;str&gt;: The relative path of the target Access Point vendor's logo in the filesystem</li>
+<li>APs_context &lt;list&gt;: A list containing dictionaries of the Access Points captured during the AP selection phase</li>
+<li>AP &lt;dict&gt;: A dictionary holding the following information regarding an Access Point:</li>
+<ul>
+<li>channel &lt;str&gt;: The channel of the Access Point</li>
+<li>essid &lt;str&gt; The ESSID of the Access Point</li>
+<li>bssid &lt;str&gt; The BSSID (MAC) address of the Access Point</li>
+<li>vendor &lt;str&gt; The vendor's name of the Access Point</li>
+</ul>
+</ul>
+<p>Note that the above values may be 'None' accordingly. For example, all the target_* values will be None if there user did not target an Access Point (by using --essid option). The 'target_ap_logo_path' will be None if the logo of the specific vendor does not exist in the repository.</p>
+
+<li>config.ini file (described above).</li><p>All the variables defined in the "Context" section may be used from within the template files.
+In case of naming conflicts, the variables from the configuration file will override those coming from the beacon frames.</p>
+</ol>
+<h4>Logging credentials</h4>
+<p>
+In order for wifiphisher to know which credentials to log, the values of the 'name' HTML attributes need to be prefixed with the 'wfphshr' string. During POST requests, wifiphisher will log all variables that are prefixed with this string.</p>
+<h4>Example</h4>
+<p>Here's a snippet from a template (index.html):</p>
+<!--
+> <p> Dear {{ victim_name }}, This is a message from {{ ISP }}.
+> A problem was detected regarding your {{ target_ap_vendor }} router. </p>
+> <p> Please write your credentials to re-connect over PPPOE/PPPOA.</p>
+> <input type="text" name="wphshr-username"></input>
+> <input type="text" name="wphshr-password"></input>
+--!>
+<p>
+In this example, 'victim_name' and 'ISP' variables come from config.ini, while 'target_ap_vendor' variable is from the beacon frames. Both "wphshr-username" and "wphshr-password" will be logged.</p>
+</div>
+</center>
+</body>

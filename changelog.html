@@ -1,0 +1,119 @@
+<head>
+<title>Wifiphisher - Automated victim-customized phishing attacks against Wi-Fi clients</title>
+<style>
+    body { 
+        background-color: #000405;
+    }
+
+    #content {
+        font-family: monospace, prestige;
+        width: 600px;
+        padding: 5px 40px 20px 20px;
+        font-size: 12px;
+        background-color: white;
+        text-align: left;
+        border: 2px solid grey;
+    }
+
+    a {
+        color: #006d91;
+    }
+
+    #menu {
+        font-family: Arial, Helvetica, Sans-Serif;
+        padding-top: 2em;
+        padding-bottom: 0.1em;
+        font-size: 22px;
+        color: #006d91;
+    }
+
+    #menu a {
+        text-decoration: none;
+    }
+
+    h1 { 
+        padding-top: 5px;
+        font-size: 18px;
+    }
+
+    h2 { 
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+    ul, ol {
+        list-style-position: inside;
+        padding-left: 15px;
+    }
+</style>
+</head>
+<body>
+<center><img width="45%" src="logo.png"></img>
+<div id="menu">
+<a href="/">Intro</a> || <a href="/download.html">Download</a> || <a href="docs.html">Docs</a> || <a href="changelog.html">Changelog</a> || <a href="research.html">Research</a> 
+</div>
+<div id="content">
+
+<h1>Changelog</h1>
+
+
+<h2>Wifiphisher v1.3</h2>
+<p><b>Date:</b> Apr 15, 2017</p>
+<ul>
+<li>Introduced --quitonsuccess (-qS) option. [@javaes]</li>
+<li>Introduced Travis CI. [@d33tah]</li>
+<li>Install pylint in Travis. [@blackHatMonkey] </li>
+<li>Web server migration to Tornado. Fixes various bugs and increases performance. [@sophron] </li>
+<li>Remove DNS leases after the script restarts. [@laozi999] </li>
+<li>Introduced --internetinterface (-iI) option to provide Internet connectivity to victims. [@sophron] </li>
+<li>Added support for iOS and Android to our network manager imitation template. [@alexsalvetti] </li>
+<li>Introduced a new deauthentication module. [@blackHatMonkey] </li>
+<li>Introduced a new recon module, including new features in target AP selection phase. [@blackHatMonkey] </li>
+<li>Code refactoring including a more modular design. [@sophron] </li>
+<li>Introduced accesspoint module serving as a hostapd wrapper. [@sophron] </li>
+<li>Introducing Lure10, an attack for automatic association against Windows devices. [@sophron] </li>
+</ul>
+
+<h2>Wifiphisher v1.2</h2>
+<p><b>Date:</b> Dec 5, 2016</p>
+<ul>
+<li> Web server now starts after DHCP [@sophron]</li>
+<li> Support logging of multiple POST values [@sophron]</li>
+<li>Include some ASCII art [@sophron]</li>
+<li>Introduced 'phishinghttp' module and fixed bugs on HTTP server [@sophron]</li>
+<li>Users may now interactively choose the scenario they wish [@blackHatMonkey]</li>
+<li>Included an impoved algorithm for detecting and using two of the available network interfaces. [@blackHatMonkey]</li>
+<li>Introduced --presharedkey option. Users may now create Evil Twin against password-protected networks. [@sophron]<li>
+<li>Introduced "Browser Plugin Update" scenario. [@V1V1]</li>
+<li>Packaged the project. Dependencies can now be automatically installed with setup.py. [@sophron]</li>
+<li>Added the feature to detect AP vendor based on BSSID. [@lvrach]</li>
+<li>Included template engine. [@lvrach]</li>
+<li>Fixed issues on Ubuntu. [@lvrach]</li>
+<li>Fixed issues on Arch Linux. [@gtklocker]</li>
+<li>Included PyRIC project. [@blackhatMonkey]</li>
+<li>Introduced --essid option. This will skip the AP selection phase. [@sophron]</li>
+<li>Introduced --nojamming option. This will turn off deauthentication. [@sophron]</li>
+<li>Introduced new OAuth template. [@sophron]</li>
+<li>Introduced new "Wi-Fi Connect" template. [@dionyziz]</li>
+</ul>
+
+<h2>Wifiphisher v1.1</h2>
+<p><b>Date:</b> Jul 1, 2015</p>
+<p>The actual first release of the tool happened on Jan 5 2015. Bugs have been tackled since then. I consider this a maintenance release (1.1) after the major release (1.0) that happened back then.</p>
+<ul>
+<li>Fixed compatibility with systems defaulting to python3. [@jaseg]</li>
+<li>Fixed bug with undefined variable (#7). [@yasoob]</li>
+<li>Fixed concatenation error. [@HassenPy]</li>
+<li>   Code cleaning. [@yasoob]</li>
+<li>   Added connection-reset template. [@shelt]</li>
+<li>   PEP8 fixes [@HassenPy]</li>
+<li>  Disallowed the usage of an Internet-connected interface for the Access Point as this would reset IP addressing. [@sophron] </li>
+<li>   Fixed the bug with the empty password (#97). [@sophron]</li>
+<li>   Code restructure. [@sophron]</li>
+<li>   Catched exception when another process is listening to one of our ports. [@sophron]</li>
+<li>   Output a message when hostapd cannot be installed. [@HassenPy]</li>
+<li>   Added support for Pineapple's DD-WRT. [@tgalyean]</li>
+</ul>
+</div>
+</center>
+</body>

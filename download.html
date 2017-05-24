@@ -1,0 +1,101 @@
+<head>
+<title>Wifiphisher - Automated victim-customized phishing attacks against Wi-Fi clients</title>
+<style>
+    body { 
+        background-color: #000405;
+    }
+
+    #content {
+        font-family: monospace, prestige;
+        width: 600px;
+        padding: 5px 40px 20px 20px;
+        font-size: 12px;
+        background-color: white;
+        text-align: left;
+        border: 2px solid grey;
+    }
+
+    a {
+        color: #006d91;
+    }
+
+    #menu {
+        font-family: Arial, Helvetica, Sans-Serif;
+        padding-top: 2em;
+        padding-bottom: 0.1em;
+        font-size: 22px;
+        color: #006d91;
+    }
+
+    #menu a {
+        text-decoration: none;
+    }
+
+    h1 { 
+        padding-top: 5px;
+        font-size: 18px;
+    }
+
+    h2 { 
+        padding-top: 5px;
+        font-size: 16px;
+    }
+
+    ul, ol {
+        list-style-position: inside;
+        padding-left: 15px;
+    }
+</style>
+</head>
+<body>
+<center><img width="45%" src="logo.png"></img>
+<div id="menu">
+<a href="/">Intro</a> || <a href="/download.html">Download</a> || <a href="docs.html">Docs</a> || <a href="changelog.html">Changelog</a> || <a href="research.html">Research</a> 
+</div>
+<div id="content">
+<h1>1. Download</h1>
+
+Wifiphisher source releases are described below. The tool is distributed with source code under the terms of the GNU General Public License.
+
+<h2>a. Stable version</h2>
+<p>Wifiphisher is available for download on Github. Link is provided below.</p>
+
+<p>It is recommended to verify the authenticity of a Wifiphisher release by checking the integrity of the downloaded files. GPG detached signatures and SHA-1 hashes for the releases are available below. You may find my public key on the usual PGP public servers.</p>
+
+<p>Latest stable Wifiphisher release gzip compressed tarball: <a href="https://github.com/wifiphisher/wifiphisher/archive/v1.3.tar.gz">wifiphisher-1.3.tar.gz</a> (on Github)</p>
+<p>SHA256 Checksum: <a href="/sigs/wifiphisher-1.3.tar.gz.sha256">wifiphisher-1.3.tar.gz.sha256</a></p>
+<p>Signature: <a href="/sigs/wifiphisher-1.3.tar.gz.asc">wifiphisher-1.3.tar.gz.asc</a></p>
+
+<h2>b. Latest development</h2>
+<p>To clone the latest development revision using git, type the following command. </p>
+
+<p> > git clone https://github.com/wifiphisher/wifiphisher.git </p>
+
+<h1>2. Install</h1>
+
+<h2>a. Requirements</h2>
+Following are the requirements for getting the most out of Wifiphisher:
+<ul>
+<li>Kali Linux. Although people have made Wifiphisher work on other distros, Kali Linux is the officially supported distribution, thus all new features are primarily tested on this platform.</li>
+<li>One wireless network adapter that supports AP mode. Drivers should support netlink.</li>
+<li>One wireless network adapter that supports Monitor mode and is capable of injection. Again, drivers should support netlink. If a second wireless network adapter is not available, you may run the tool with the --nojamming option. This will turn off the de-authentication attack though.</li>
+</ul> 
+
+<h2>b. Install from Package Manager</h2>
+<p>Wifiphisher has been packaged by many Linux security distributions (including Kali Linux and Arch Linux). While these packages are generally quicker and easier to install, they are not always up-to-date. To install Wifiphisher package on Kali Linux you can type:</p>
+<p> > apt-get install wifiphisher</p>
+
+
+<h2>c. Install from Source</h2>
+
+<p>Assuming you downloaded and verified a Wifiphisher tar file, you can now install the tool by typing the following commands:</p>
+
+<pre>
+> tar xvf wifiphisher.tar.gz
+> cd wifiphisher # Switch to tool's directory
+> sudo python setup.py install # Install any dependencies
+</pre>
+
+</div>
+</center>
+</body>
